@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#include "fractionClass.cpp"
+#include "hello.cpp"
 
 
 int main() {
@@ -28,6 +28,12 @@ int main() {
 
     else
         cout << "Not Equal" << endl;
+
+    Fraction f5(12, 2);
+    Fraction f6 = ++(++f5);
+    
+    f6.print();
+    f5.print();
 
     return 0;
 }

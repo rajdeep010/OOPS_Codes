@@ -55,4 +55,25 @@ public:
         return (this->dr == f2.dr and this->nr == f2.nr);
     }
 
+
+
+    // pre-increment operator
+
+    // return by reference
+    // else if we do Fraction f6 =  ++(++f5)
+    // f5 won't be updated twice
+    // rather after first time increment it creates a copy of the returned fraction and update there
+    // so if we want to do it properly return by reference 
+
+    // so that it doesn't create a copy to do the next updation
+    Fraction& operator++() {
+        nr = nr + dr;
+        int gcd = __gcd(nr, dr);
+        nr /= gcd;
+        dr /= gcd;
+
+        // we want to return the current object's content
+        return *this;
+    }
+
 };
