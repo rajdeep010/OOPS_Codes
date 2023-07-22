@@ -1,6 +1,15 @@
+#include<bits/stdc++.h>
+using namespace std;
+
 class Fraction {
     int nr;
     int dr;
+
+    void simplify() {
+        int gcd = __gcd(nr, dr);
+        nr /= gcd;
+        dr /= gcd;
+    }
 
 public:
     Fraction(int a, int b) {
@@ -63,7 +72,7 @@ public:
     // else if we do Fraction f6 =  ++(++f5)
     // f5 won't be updated twice
     // rather after first time increment it creates a copy of the returned fraction and update there
-    // so if we want to do it properly return by reference 
+    // so if we want to do it properly return by reference
 
     // so that it doesn't create a copy to do the next updation
     Fraction& operator++() {
@@ -76,4 +85,31 @@ public:
         return *this;
     }
 
+
+    // Post Increment operator
+    // as there can't be any kind of nesting
+    // (f++)++ now allowed
+    // so don't have to return by reference
+    Fraction operator++(int) {
+        Fraction ans(nr, dr);
+        nr += dr;
+        simplify();
+        ans.simplify();
+        return ans;
+    }
+
+    Fraction& operator+=(Fraction const& f2) {
+        int newDr = this->dr * f2.dr;
+        int newNr = this->dr * f2.nr + this->nr * f2.dr;
+
+        int gcd = __gcd(newDr, newNr);
+
+        newDr /= gcd;
+        newNr /= gcd;
+
+        this->dr = newDr;
+        this->nr = newNr;
+
+        return *this;
+    }
 };

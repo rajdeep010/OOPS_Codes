@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#include "hello.cpp"
+#include "fractionClass.cpp"
 
 
 int main() {
@@ -31,9 +31,22 @@ int main() {
 
     Fraction f5(12, 2);
     Fraction f6 = ++(++f5);
-    
+
     f6.print();
     f5.print();
+
+    f6 += f5;
+    f6.print();
+
+    f6 += f1;
+    f6.print();
+
+    f6++;
+    f6.print();
+
+    (f5 += f6) += f3;
+    f5.print();
+
 
     return 0;
 }
